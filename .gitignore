@@ -3,3 +3,8 @@
 ################################################################################
 
 /.vs
+/Hosomi.NAL.Addon/bin/Debug
+/Hosomi.NAL.Addon/obj
+/Hosomi.NAL.AddOn.Core/bin/Debug
+/Hosomi.NAL.AddOn.Core/obj
+/packages
