@@ -113,6 +113,29 @@ namespace Hosomi.NAL.AddOn.Core.Forms
             return true;
         }
 
+
+        public override bool MenuRemove()
+        {
+            if (MenuEventInfo.BeforeAction)
+            {
+                Form = SBOApp.Application.Forms.ActiveForm;
+                DBDataSource dt_Line = Form.DataSources.DBDataSources.Item("@NAL_ATOCONC1");
+
+                for (int i = 0; i < dt_Line.Size; i++)
+                {
+                    double usedQty;
+                    double.TryParse(dt_Line.GetValue("U_QtdeUtil", i), out usedQty);
+
+                    if (usedQty > 0)
+                    {
+                        SBOApp.Application.SetStatusBarMessage("Impossível remover, já existem linhas quantidade utilizada");
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
         public override bool MenuAddRow()
         {
             if (!MenuEventInfo.BeforeAction)
